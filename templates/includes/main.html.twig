@@ -1,0 +1,89 @@
+<!-- Hero Section -->
+<main class="main">
+    <section id="hero" class="hero section">
+
+      <div class="container">
+        <div class="row gy-4">
+          <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center" >
+            <h1 class="">Envoyez Vos Sms Partout Dans Le Monde</h1>
+            <p class="">Bienvenue sur la plateforme qui offre des services d'envoi SMS à des tarifs recordab</p>
+            <div class="d-flex">
+                <a href="#about" class="btn btn-primary btn-get-started btn-rounded mr-2" data-bs-toggle="modal" data-bs-target="#inscriptionModal">S'inscrire</a>
+                <a href="#about" class="btn btn-secondary btn-get-started btn-rounded">Nos Tarifs</a>
+            </div>
+
+          </div>
+          <div class="col-lg-6 order-1 order-lg-2 hero-img">
+            <img src="{{ asset("assets/img/hero-img.png")}}" class="img-fluid animated" alt="">
+          </div>
+        </div>
+      </div>
+    </section><!-- /Hero Section -->
+</main>
+
+<!-- Modal s'inscrire -->
+                <div class="modal fade" id="inscriptionModal" tabindex="-1" aria-labelledby="inscriptionModal" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Brainsense</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                       <form>
+                            <div class="mb-3">
+                                <input type="text" class="form-control border-0 border-bottom border-dark" id="nom" name="nom" placeholder="Nom" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="text" class="form-control border-0 border-bottom border-dark" id="prenom" name="prenom" placeholder="Prénom" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="email" class="form-control border-0 border-bottom border-dark" id="email" name="email" placeholder="Email" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="text" class="form-control border-0 border-bottom border-dark" id="nom_entreprise" name="nom_entreprise" placeholder="Nom de l'entreprise" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="text" class="form-control border-0 border-bottom border-dark" id="numero" name="numero" placeholder="Numéro" required>
+                            </div>
+                            
+                        </form>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
+                        <button type="button" class="btn btn-primary">S'inscrire</button>
+                    </div>
+                    </div>
+                </div>
+                </div>
+
+                <!-- Modal se connecter -->
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Brainsense</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <input type="text" class="form-control border-0 border-bottom border-dark" id="email" name="email" placeholder="Email" required>
+                    </div>
+                    <div class="mb-3 position-relative">
+                        <input type="password" class="form-control border-0 border-bottom border-dark pr-5" id="password" name="password" placeholder="Mot de passe" required>
+                        <button type="button" class="btn position-absolute end-0 top-0 mt-2 me-2" style="background: none; border: none;" onclick="togglePasswordVisibility()">
+                            <i class="bi bi-eye" id="togglePasswordIcon"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
+                <button type="button" class="btn btn-primary">Se connecter</button>
+            </div>
+        </div>
+    </div>
+</div>
+
