@@ -4,7 +4,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ path('dashboard_index') }}">
                 <div class="sidebar-brand-text mx-3">BrainSense<sup></sup></div>
             </a>
 
@@ -13,7 +13,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="{{ path('admin.home.dashboard')}}">
+                <a class="nav-link" href="{{ path('dashboard_index')}}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -38,7 +38,7 @@
             </li>
            
             <li class="nav-item">
-                <a class="nav-link" href="{{ path('admin.home.send') }}">
+                <a class="nav-link" href="{{ path('dashboard_send_msg') }}">
                     <i class="fas fa-sms"></i>
                     <span>Envoyer sms</span>
                 </a>
@@ -47,14 +47,14 @@
 
             <!-- Nav Item - histoy-->
             <li class="nav-item">
-                <a class="nav-link" href="{{ path('admin.home.history')}}">
+                <a class="nav-link" href="{{ path('dashboard_history')}}">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Historique</span></a>
             </li>
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="{{ path('admin.home.purchase')}}">
+                <a class="nav-link" href="{{ path('dashboard_purchase')}}">
                     <i class="fas fa-fw fa-table"></i>
                     <span>RECHARGER</span></a>
             </li>
