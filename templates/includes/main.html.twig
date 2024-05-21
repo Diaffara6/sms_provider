@@ -6,9 +6,9 @@
         <div class="row gy-4">
           <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center" >
             <h1 class="">Envoyez Vos Sms Partout Dans Le Monde</h1>
-            <p class="">Bienvenue sur la plateforme qui offre des services d'envoi SMS à des tarifs recordab</p>
+            <p class="">Bienvenue sur la plateforme qui offre des services d'envoi SMS à des tarifs record</p>
             <div class="d-flex">
-                <a href="#about" class="btn btn-primary btn-get-started btn-rounded mr-2">S'inscrire</a>
+                <a href="{{ path("app_register")}}" class="btn btn-primary btn-get-started btn-rounded mr-2">S'inscrire</a>
                 <a href="#about" class="btn btn-secondary btn-get-started btn-rounded">Nos Tarifs</a>
             </div>
 
@@ -21,41 +21,3 @@
     </section><!-- /Hero Section -->
 </main>
 
-<!-- Modal s'inscrire -->
-                <div class="modal fade" id="inscriptionModal" tabindex="-1" aria-labelledby="inscriptionModal" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Brainsense</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                       <form>
-                            <div class="mb-3">
-                                <input type="text" class="form-control border-0 border-bottom border-dark" id="nom" name="nom" placeholder="Nom" required>
-                            </div>
-                            <div class="mb-3">
-                                <input type="text" class="form-control border-0 border-bottom border-dark" id="prenom" name="prenom" placeholder="Prénom" required>
-                            </div>
-                            <div class="mb-3">
-                                <input type="email" class="form-control border-0 border-bottom border-dark" id="email" name="email" placeholder="Email" required>
-                            </div>
-                            <div class="mb-3">
-                                <input type="text" class="form-control border-0 border-bottom border-dark" id="nom_entreprise" name="nom_entreprise" placeholder="Nom de l'entreprise" required>
-                            </div>
-                            <div class="mb-3">
-                                <input type="text" class="form-control border-0 border-bottom border-dark" id="numero" name="numero" placeholder="Numéro" required>
-                            </div>
-                            
-                        </form>
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
-                        <button type="button" class="btn btn-primary">S'inscrire</button>
-                    </div>
-                    </div>
-                </div>
-                </div>
-
-                
