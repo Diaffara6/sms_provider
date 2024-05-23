@@ -1,6 +1,17 @@
 {% extends 'dashboard/base.html.twig' %}
 
 {% block body %}
+
+ {# Affichage des messages flash #}
+ {% for label, messages in app.flashes %}
+ <div class="alert alert-{{ label }}">
+     {% for message in messages %}
+         <p>{{ message }}</p>
+     {% endfor %}
+ </div>
+{% endfor %}
+
+
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-6">
@@ -9,7 +20,7 @@
                     <h4>Envoyer un Message</h4>
                 </div>
                 <div class="card-body">
-                    <form>
+                    <form method='post' action = "{{path('dashboard_send_msg')}}">
                         <div class="mb-3">
                             <label for="expediteur" class="form-label">Nom Expéditeur</label>
                             <input type="text" class="form-control" id="expediteur" name="expediteur" required>

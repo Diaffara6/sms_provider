@@ -26,6 +26,9 @@ class Messages
     #[ORM\Column(type: 'datetime')]
     private ?\DateTimeInterface $sendAt = null;
 
+    #[ORM\Column(length: 20)]
+    private ?string $expediteur = null;
+
     public function __construct()
     {
         $this->sendAt = new \DateTime();
@@ -80,6 +83,18 @@ class Messages
     public function setSendAt(\DateTimeInterface $sendAt): self
     {
         $this->sendAt = $sendAt;
+
+        return $this;
+    }
+
+    public function getExpediteur(): ?string
+    {
+        return $this->expediteur;
+    }
+
+    public function setExpediteur(string $expediteur): static
+    {
+        $this->expediteur = $expediteur;
 
         return $this;
     }

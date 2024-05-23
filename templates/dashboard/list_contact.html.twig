@@ -1,0 +1,47 @@
+{% extends 'dashboard/base.html.twig' %}
+
+{% block body %}
+
+ {# Affichage des messages flash #}
+ {% for label, messages in app.flashes %}
+ <div class="alert alert-{{ label }}">
+     {% for message in messages %}
+         <p>{{ message }}</p>
+     {% endfor %}
+ </div>
+{% endfor %}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h4>Mes contacts</h4>
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped">
+                        <thead>
+                            
+                            <tr>
+                                <th scope="col">Noms</th>
+                                <th scope="col">Numeros</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for contact in contacts%}
+                        
+                            <tr>
+                                <td>{{ contact.nom }}</td>
+                                <td>{{ contact.numero }}</td>
+                            </tr>
+                            {% endfor %}
+                        
+                   
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

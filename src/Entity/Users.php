@@ -38,9 +38,16 @@ class Users implements UserInterface, Serializable, PasswordAuthenticatedUserInt
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Messages::class, orphanRemoval: true)]
     private Collection $messages;
 
+    #[ORM\Column]
+    private ?int $pack = null;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Contacts::class)]
+    private Collection $contacts;
+
     public function __construct()
     {
         $this->messages = new ArrayCollection();
+        $this->contacts = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -181,5 +188,47 @@ class Users implements UserInterface, Serializable, PasswordAuthenticatedUserInt
             $this->password,
             // add any other properties you want to unserialize
         ] = unserialize($serialized, ['allowed_classes' => false]);
+    }
+
+    public function getPack(): ?int
+    {
+        return $this->pack;
+    }
+
+    public function setPack(int $pack): static
+    {
+        $this->pack = $pack;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Contacts>
+     */
+    public function getContacts(): Collection
+    {
+        return $this->contacts;
+    }
+
+    public function addContact(Contacts $contact): static
+    {
+        if (!$this->contacts->contains($contact)) {
+            $this->contacts->add($contact);
+            $contact->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeContact(Contacts $contact): static
+    {
+        if ($this->contacts->removeElement($contact)) {
+            // set the owning side to null (unless already changed)
+            if ($contact->getUser() === $this) {
+                $contact->setUser(null);
+            }
+        }
+
+        return $this;
     }
 }
