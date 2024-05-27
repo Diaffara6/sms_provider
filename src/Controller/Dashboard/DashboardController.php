@@ -80,6 +80,10 @@ class DashboardController extends AbstractController {
             $apiKey = 'App ba03571bd164461dd60d8a912f11bc70-bec2f5ed-9961-4e0d-8fde-956349fad5b5';
             foreach ($destinataires as $destinataire) {
                 
+                if ($user->getPack() <= 0) {
+                    $this->addFlash('error', 'Vous n\'avez plus de crédits pour envoyer des messages.');
+                    return $this->redirectToRoute('dashboard_send_msg');
+                }
           
             $body = [
                 'messages' => [
