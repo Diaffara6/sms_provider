@@ -45,37 +45,42 @@ class DashboardController extends AbstractController {
    
 
     #[Route('/send-msg', 'dashboard_send_msg')]
-    public function get_form_send_sms(Request $request, EntityManagerInterface $em): Response
+    public function get_form_send_sms(Request $request, EntityManagerInterface $em,ContactsRepository $contactRepo): Response
     {
-         
+     $user = $this->security->getUser();
+
         if ($request->isMethod('POST')) {
+         
+            $destinataires = $request->request->all('destinataires');
+           
             
+           
             $expediteur = $request->request->get('expediteur');
-            $destinataire = $request->request->get('destinataire');
             $message = $request->request->get('message');
             
-            $user = $this->security->getUser();
-
-            if ($user->getPack()<= 0) {
+          
+            if ($user->getPack() <= 0) {
                 $this->addFlash('error', 'Vous n\'avez plus de crédits pour envoyer des messages.');
                 return $this->redirectToRoute('dashboard_send_msg');
             }
+            
+           
 
             $messageEntity = new Messages();
             $messageEntity->setExpediteur($expediteur);
-            $messageEntity->setRecepient($destinataire);
+            $messageEntity->setRecepient($destinataires);
             $messageEntity->setContent($message);
             $messageEntity->setUser($user);
-            
-            
-           
-         
+
+          
             
             $client = new Client();
 
             $url = 'https://3gywnv.api.infobip.com/sms/2/text/advanced';
             $apiKey = 'App ba03571bd164461dd60d8a912f11bc70-bec2f5ed-9961-4e0d-8fde-956349fad5b5';
-
+            foreach ($destinataires as $destinataire) {
+                
+          
             $body = [
                 'messages' => [
                     [
@@ -100,25 +105,23 @@ class DashboardController extends AbstractController {
 
                 if ($response->getStatusCode() == 200) {
                     $responseBody = $response->getBody()->getContents();
-                    // Ajoutez un message flash et redirigez l'utilisateur
                     
                     $this->addFlash('success', 'Message envoyé avec succès!');
-                    $user->setPack($user->getPack()-1);
+                    $user->setPack($user->getPack() - 1);
                     $em->persist($messageEntity);
                     $em->flush();
-                    return $this->redirectToRoute('dashboard_send_msg');
+                   
                 }
             } catch (RequestException $e) {
                 $errorMessage = $e->getMessage();
-               
-                // Gérez l'erreur ici, par exemple, affichez un message d'erreur
+                
                 $this->addFlash('error', 'Erreur lors de l\'envoi du message: ' . $errorMessage);
             }
         }
-
-        // Affichez le formulaire (GET request)
-        return $this->render("dashboard/send.html.twig");
-    }
+        }
+        $contacts = $contactRepo->findBy(['user' => $user]);
+        return $this->render("dashboard/send.html.twig",['contacts'=>$contacts]);
+     }
 
     #[Route('/history-msg', 'dashboard_history', methods: ['GET'])]
     public function get_form_history(): Response {

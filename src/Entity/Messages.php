@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\MessagesRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: MessagesRepository::class)]
@@ -16,8 +17,8 @@ class Messages
     #[ORM\Column(length: 255)]
     private ?string $content = null;
 
-    #[ORM\Column(length: 50)]
-    private ?string $recepient = null;
+    #[ORM\Column(type: Types::ARRAY)]
+    private ?array $recepient = [];
 
     #[ORM\ManyToOne(targetEntity: Users::class, inversedBy: 'messages')]
     #[ORM\JoinColumn(nullable: false)]
@@ -29,6 +30,7 @@ class Messages
     #[ORM\Column(length: 20)]
     private ?string $expediteur = null;
 
+   
     public function __construct()
     {
         $this->sendAt = new \DateTime();
@@ -51,12 +53,12 @@ class Messages
         return $this;
     }
 
-    public function getRecepient(): ?string
+    public function getRecepient(): ?array
     {
         return $this->recepient;
     }
 
-    public function setRecepient(string $recepient): self
+    public function setRecepient(array $recepient): static
     {
         $this->recepient = $recepient;
 
@@ -98,4 +100,6 @@ class Messages
 
         return $this;
     }
+
+    
 }

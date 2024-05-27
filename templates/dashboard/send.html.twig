@@ -26,9 +26,14 @@
                             <input type="text" class="form-control" id="expediteur" name="expediteur" required>
                         </div>
                         <div class="mb-3">
-                            <label for="destinataire" class="form-label">Numero du Destinataire</label>
-                            <input type="text" class="form-control" id="destinataire" name="destinataire" required>
+                            <label for="destinataires" class="form-label">Choisir les destinataires</label>
+                            <select multiple class="form-control" id="destinataires" name="destinataires[]">
+                                {% for contact in contacts %}
+                                    <option value="{{ contact.numero }}">{{ contact.nom }}</option>
+                                {% endfor %}
+                            </select>
                         </div>
+                        
                         <div class="mb-3">
                             <label for="message" class="form-label">Contenu du Message</label>
                             <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
